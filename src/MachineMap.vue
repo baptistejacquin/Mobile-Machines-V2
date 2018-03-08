@@ -1,12 +1,15 @@
 <template>
     <div>
+      <br/>
       <gmap-map
+        mapTypeId="satellite"
         :center="{lat:10, lng:10}"
-        :zoom="7"
+        :zoom="3"
         style="width: 80%; height: 650px; margin: auto"
       >
-        <gmap-marker v-for="machine in machines"
-          :position="{lat:machine.latitude, lng:machine.longitude}"
+        <gmap-marker v-for="machine in listeMachines" :key="machine.id"
+          :position="{lat:parseFloat(machine.latitude), lng:parseFloat(machine.longitude)}"
+                     :label="machine.name"
         ></gmap-marker>
       </gmap-map>
     </div>
@@ -15,21 +18,7 @@
 <script>
     export default {
         name: "machine-map",
-      data: function () {
-        return {
-          machines: [{
-            id: 1,
-            latitude: 10,
-            longitude: 10,
-          },
-            {
-              id: 2,
-              latitude: 11,
-              longitude: 9.6,
-            }]
-        }
-
-      }
+      props:['listeMachines']
     }
 </script>
 

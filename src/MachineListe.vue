@@ -1,42 +1,22 @@
 <template>
     <div>
-        <br/><br/>
-            <div v-for="machine in machines" class="col-lg-12 liste" >
-                <h4>id n° {{machine.id}}</h4>
-                <h1> {{machine.name}}</h1>
-                <h3 v-if="machine.status===true" class="green"> Status OK</h3>
-                <h3 v-if="machine.status===false" class="red"> Status KO</h3>
-                <h5>Last time checked : {{machine.checkedAt.toLocaleString()}}</h5>
-                <br/><br/>
-            </div>
+      <machine v-for="machine in listeMachines" :machine="machine" :key="machine.id"></machine>
     </div>
 </template>
 
 <script>
-    export default {
-        name: "machine-liste",
-        data: function () {
-            return {
-                machines: [{
-                    id: 1,
-                    name: 'What else ?',
-                    status: true,
-                    checkedAt: new Date(),
-                }, {
-                    id: 2,
-                    name: 'Broken',
-                    status: false,
-                    checkedAt: new Date(),
-                }]
-            }
+    import Machine from "./Machine";
 
-        }
+    export default {
+      components: {Machine},
+      name: "machine-liste",
+      props:["listeMachines"],
     }
 </script>
 
 <style scoped>
     .green {
-        color: #00fe00;
+        color: #00d84d;
     }
 
     .red {

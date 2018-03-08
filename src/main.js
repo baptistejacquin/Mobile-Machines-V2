@@ -4,6 +4,9 @@ import VueRouter from 'vue-router'
 import MachineListe from "./MachineListe.vue";
 import MachineMap from "./MachineMap.vue";
 import Machine from "./Machine.vue";
+import ajoutMachine from './ajoutMachine';
+import ToggleButton from 'vue-js-toggle-button'
+Vue.use(ToggleButton)
 import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.use(VueGoogleMaps, {
@@ -12,15 +15,11 @@ Vue.use(VueGoogleMaps, {
     }
 })
 
-
-
-
-
 Vue.use(VueRouter)
 
 const routes = [
     { path: '/liste', component: MachineListe },
-    { path: '/machine', component: Machine },
+    { path: '/machine', component: ajoutMachine },
     { path: '/Map', component: MachineMap }
 ]
 
