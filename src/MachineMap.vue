@@ -3,8 +3,8 @@
       <br/>
       <gmap-map
         mapTypeId="satellite"
-        :center="{lat:10, lng:10}"
-        :zoom="3"
+        :center="{lat:parseFloat(userposition.coords.latitude), lng:parseFloat(userposition.coords.longitude)}"
+        :zoom="7"
         style="width: 80%; height: 650px; margin: auto"
       >
         <gmap-marker v-for="machine in listeMachines" :key="machine.id"
@@ -18,8 +18,34 @@
 <script>
     export default {
         name: "machine-map",
-      props:['listeMachines']
+      props:['listeMachines'],
+      data(){
+          return {
+            userposition: {
+              coords:{
+                latitude: "0",
+                longitude : "0"
+              }
+            }
+          }
+      },
+      methods:{
+        geo(){
+          navigator.geolocation.getCurrentPosition((position)=> {
+          this.userposition = position
+            console.log(position)
+
+        },error => {
+            console.log('erreur')
+          }
+        );
+        }
+      },
+      created(){
+          this.geo()
+      }
     }
+
 </script>
 
 <style scoped>

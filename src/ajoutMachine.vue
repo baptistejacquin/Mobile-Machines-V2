@@ -55,21 +55,23 @@
           longitude:"5.7287321",
           status : "false",
           name:"",
-
         }
       }
     },
     methods:{
-      post() {
-        axios.post(`https://machine-api-campus.herokuapp.com/api/machines`,this.newMachine)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            $('#ajoutModal').modal('hide')
-          })
-          .catch(e => {
-            console.log('Error')
-          })
-      },
+    post() {
+      if (this.newMachine.name != "" ) {
+        axios.post(`https://machine-api-campus.herokuapp.com/api/machines`, this.newMachine)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          $('#ajoutModal').modal('hide')
+          this.$emit('reload')
+        })
+        .catch(e => {
+          console.log('Error')
+        })
+        }
+    },
     }
   }
 </script>

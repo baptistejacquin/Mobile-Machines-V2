@@ -4,6 +4,7 @@
         <H1>Machine {{machine.name}}</H1>
         <h3 v-if="machine.status === 'true'" class="green"> Statut OK</h3>
         <h3 v-else class="red">Statut KO</h3>
+      <modif-machine :modification="machine" ></modif-machine>
       <button class="btn btn-warning" @click="supression" >Supprimer</button>
       <!--<toggle-button :sync='true' :color="{checked: '#41d100',unchecked: '#cb0c70'} " v-model="machine.status"/>-->
       <h5>Last time checked : {{test.checkedAt.toLocaleString()}}</h5>
@@ -12,8 +13,10 @@
 
 <script>
   import axios from 'axios';
+  import modifMachine from './modifMachine'
     export default {
-        name: "machine",
+      name: "machine",
+      components:{'modif-machine':modifMachine},
         props: ['machine'],
         data: function () {
             return {
@@ -30,6 +33,7 @@
             .then(response => {
               // JSON responses are automatically parsed.
               console.log('reussit')
+              this.$emit('reload')
             })
             .catch(e => {
               console.log('pas reussit')

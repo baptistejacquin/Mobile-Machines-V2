@@ -5,9 +5,9 @@
     <div>
       <router-link to="/liste" class="btn btn-primary">Consulter la liste des machines</router-link>
       <router-link to="/Map" class="btn btn-primary">Voir la Carte</router-link>
-      <ajout-machine></ajout-machine>
+      <ajout-machine v-on:reload="refresh"></ajout-machine>
       <button class="btn btn-success" @click="refresh">reload</button>
-      <router-view :listeMachines="posts"></router-view>
+      <router-view v-on:reload="refresh" :listeMachines="posts"></router-view>
 
     </div>
     <div>
@@ -43,6 +43,7 @@
         .catch(e => {
           this.errors.push(e)
         })
+      setInterval(this.refresh,10 * 1000)
     },
 
     methods: {

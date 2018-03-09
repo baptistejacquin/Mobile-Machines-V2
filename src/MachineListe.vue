@@ -1,6 +1,8 @@
 <template>
     <div>
-      <machine v-for="machine in listeMachines" :machine="machine" :key="machine.id"></machine>
+      <transition-group name="fade">
+        <machine v-for="machine in listeMachines" :machine="machine" :key="machine.id" v-on:reload="$emit('reload')"></machine>
+      </transition-group>
     </div>
 </template>
 
@@ -25,5 +27,13 @@
     .liste{
         border: 1px solid black ;
         margin: 10px;
+    }
+
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+      transition: opacity .5s;
+      opacity: 0;
     }
 </style>
