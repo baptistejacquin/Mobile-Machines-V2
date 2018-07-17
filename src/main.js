@@ -9,11 +9,11 @@ import ToggleButton from 'vue-js-toggle-button'
 Vue.use(ToggleButton)
 import * as VueGoogleMaps from 'vue2-google-maps'
 
-Vue.use(VueGoogleMaps, {
-    load: {
-        key: require('../config.json').key
-    }
-})
+// Vue.use(VueGoogleMaps, {
+//     load: {
+//         key: require('../config.json').key
+//     }
+// })
 
 Vue.use(VueRouter)
 
